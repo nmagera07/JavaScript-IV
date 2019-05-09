@@ -24,7 +24,7 @@ class Instructor extends Person {
         return `Today we are learning about ${subject}.`;
     }
     grade(student, subject) {
-        return `${student.name} receives a perfect score on ${subject}.`;
+        return `${student} receives a perfect score on ${subject}.`;
     }
     }
 
@@ -37,13 +37,13 @@ class Student extends Person {
         this.favSubjects = studentAttrs.favSubjects;
     }
     listsSubjects() {
-        return listsSubjects;
+        return this.favSubjects.toString();
     }
     PRAssignment(subject) {
-        return `${student.name} has submitted a PR for ${subject}`;
+        return `${this.name} has submitted a PR for ${subject}`;
     }
-    sprintChallenge() {
-        return `${student.name} has begun sprint challenge on ${subject}`;
+    sprintChallenge(subject) {
+        return `${this.name} has begun the sprint challenge on ${subject}`;
     }
 }
 
@@ -89,7 +89,7 @@ const flash = new Student({
   className: `CS132` 
 })
 
-
+// Instructors
 const fred = new Instructor({
   name: 'Fred',
   location: 'Bedrock',
@@ -100,18 +100,49 @@ const fred = new Instructor({
 });
 
 
+const tom = new Instructor({
+  name: 'Tom',
+  location: 'Universe',
+  age: 33,
+  favLanguage: 'Python',
+  specialty: 'Back-end',
+  catchPhrase: `Logic is key!`
+});
 
+// Project Managers
 const jack = new ProjectManagers({
-  name: 'jack',
-  location: 'computer',
+  name: 'Jack',
+  location: 'USA',
   age: 40,
-  favLanguage: 'python',
-  specialty: 'Front-end',
-  catchPhrase: `Don't forget the snacks` 
+  gradClassName: 'CS1',
+  favInstructor: 'Fred',
 })
 
 
-console.log(fred.location)
-console.log(joe.name)
-console.log(jack.standUp(2345))
-console.log(jack.debugsCode('peter', 'java'))
+const tim = new ProjectManagers({
+  name: 'Tim',
+  location: 'computer',
+  age: 40,
+  gradClassName: 'CS2',
+  favInstructor: 'tom' 
+})
+
+//Instructor Tests
+console.log(fred.specialty)
+console.log(fred.favLanguage)
+console.log(tom.catchPhrase)
+console.log(fred.demo('HTML'))
+console.log(tom.grade('Flash', 'React'))
+
+//Student Tests
+console.log(harry.previousBackground)
+console.log(harry.className)
+console.log(peter.PRAssignment('Python'))
+console.log(flash.sprintChallenge('CSS'))
+console.log(flash.listsSubjects())
+
+//Project Manager Tests
+console.log(jack.gradClassName)
+console.log(jack.favInstructor)
+console.log(tim.standUp('#3254'))
+console.log(tim.debugsCode('Peter', 'React'))
