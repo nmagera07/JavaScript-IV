@@ -20,16 +20,16 @@ class Instructor extends Person {
         this.favLanguage = instructorAttrs.favLanguage;
         this.catchPhrase = instructorAttrs.catchPhrase;
      }
-        demo(subject) {
-            return `Today we are learning about ${subject}.`;
-        }
-        grade(student, subject) {
-            return `${student.name} receives a perfect score on ${subject}.`;
-        }
+    demo(subject) {
+        return `Today we are learning about ${subject}.`;
+    }
+    grade(student, subject) {
+        return `${student.name} receives a perfect score on ${subject}.`;
+    }
     }
 
 
-class Student extends Instructor {
+class Student extends Person {
     constructor(studentAttrs) {
         super(studentAttrs);
         this.previousBackground = studentAttrs.previousBackground;
@@ -47,7 +47,7 @@ class Student extends Instructor {
     }
 }
 
-class ProjectManagers extends Student {
+class ProjectManagers extends Instructor {
     constructor(pmAttrs) {
         super(pmAttrs);
         this.gradClassName = pmAttrs.gradClassName;
@@ -57,9 +57,38 @@ class ProjectManagers extends Student {
         return `${this.name} announces to ${channel}, @channel standby times!`;
     }
     debugsCode(student, subject) {
-        return `${this.name} debugs ${student.name}'s code on ${subject}`
+        return `${this.name} debugs ${student}'s code on ${subject}`
     }
 }
+
+// Students
+const harry = new Student({
+  name: 'Harry',
+  location: 'Manhattan',
+  age: 24,
+  favSubjects: ['HTML', 'CSS', 'JavaScript'],
+  previousBackground: 'worked at Oscorp',
+  className: `CS132` 
+})
+
+const peter = new Student({
+  name: 'Peter',
+  location: 'Queens',
+  age: 23,
+  favSubjects: ['React', 'Python'],
+  previousBackground: 'Spider-Man',
+  className: `CS132` 
+})
+
+const flash = new Student({
+  name: 'Flash',
+  location: 'Queens',
+  age: 22,
+  favSubjects: ['React', 'CSS'],
+  previousBackground: 'Venom',
+  className: `CS132` 
+})
+
 
 const fred = new Instructor({
   name: 'Fred',
@@ -70,15 +99,19 @@ const fred = new Instructor({
   catchPhrase: `Don't forget the homies`
 });
 
-const joe = new Student({
-  name: 'joe',
-  location: 'world',
-  age: 24,
-  favLanguage: 'React',
+
+
+const jack = new ProjectManagers({
+  name: 'jack',
+  location: 'computer',
+  age: 40,
+  favLanguage: 'python',
   specialty: 'Front-end',
-  catchPhrase: `Don't forget the dudes` 
+  catchPhrase: `Don't forget the snacks` 
 })
 
+
 console.log(fred.location)
-console.log(fred.favLanguage)
-console.log(joe.specialty)
+console.log(joe.name)
+console.log(jack.standUp(2345))
+console.log(jack.debugsCode('peter', 'java'))
